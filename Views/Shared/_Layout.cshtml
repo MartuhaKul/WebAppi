@@ -46,26 +46,32 @@
 
 </div>
 <!-- "Best Sellers Shoes" section at the bottom, always displayed -->
-<div class="highly_rated">
-    <h2>Highly Rated Shoes</h2>
+<section class="best_seller_shoes">
+    <h2>Best Sellers Shoes</h2>
     <div class="cards">
-        @if (ViewData["HighlyRated"] is List<WebAppi.Models.Shoe> highlyRatedShoes)
+        @if (ViewData["BestSellers"] is List<WebAppi.Models.Shoe> bestSellers)
         {
-        foreach (var shoe in highlyRatedShoes)
-        {
-        <div class="card">
-            <a class="card_a" href="@Url.Action("ShoeDetails", "Home", new { id = shoe.Id })">
-                <img src="@shoe.ImageUrl" alt="Shoe Image">
-                <h4>@shoe.Name</h4>
-                <h5>$ @shoe.Price</h5>
-            </a>
-        </div>
+            var limitedBestSellers = bestSellers.Take(3).ToList(); // Обмеження трьома
+            foreach (var shoe in limitedBestSellers)
+            {
+                <div class="card">
+                    @if (shoe.IsHighlyRated)
+                    {
+                        <div class="highly_rated">
+                            <p><span>&#9733;</span> Highly Rated</p>
+                        </div>
+                    }
+                    <a class="card_a" href="@Url.Action("ShoeDetails", "Home", new { id = shoe.Id })">
+                        <img src="@shoe.ImageUrl" alt="Shoe Image">
+                        <h4>@shoe.Name</h4>
+                        <h5>$ @shoe.Price</h5>
+                    </a>
+                </div>
+            }
         }
-        }
+        
     </div>
-</div>
-
-
+</section>
 
 <footer>
 
