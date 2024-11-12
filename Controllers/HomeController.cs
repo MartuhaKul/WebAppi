@@ -39,48 +39,42 @@ namespace WebAppi.Controllers
             }
         };
 
-        // Головна сторінка
         public IActionResult Index()
         {
-            // Встановлюємо, чи є товар highly rated
+            // Встановлюємо рейтинг для взуття
             foreach (var shoe in _shoes)
             {
                 shoe.IsHighlyRated = shoe.Rating >= 4.5;
             }
 
-            // Випадкові товари для відображення на головній сторінці
+            // Випадковий відбір трьох карток з колекції
             var randomShoes = _shoes.OrderBy(s => Guid.NewGuid()).Take(3).ToList();
-
-            // Визначаємо товари з високими рейтингами
-            var highlyRatedShoes = _shoes.Where(s => s.IsHighlyRated).ToList();
-            ViewData["HighlyRated"] = highlyRatedShoes;  // Передаємо highly rated товари для відображення на сторінці
+            ViewData["BestSellers"] = randomShoes;
 
             return View(randomShoes);
         }
 
-        // Сторінка деталей товару
         public IActionResult ShoeDetails(int id)
         {
-            // Шукаємо товар за ID
-            var shoe = _shoes.FirstOrDefault(s => s.Id == id);
-            if (shoe == null)
+            // Знаходимо вибрану картку
+            var selectedShoe = _shoes.FirstOrDefault(s => s.Id == id);
+            if (selectedShoe == null)
             {
                 return NotFound();
             }
 
-            // Отримуємо highly rated товари з ViewData
-            var highlyRatedShoes = ViewData["HighlyRated"] as List<Shoe>;
-
-            if (highlyRatedShoes == null)
+            // Встановлюємо рейтинг для взуття
+            foreach (var shoe in _shoes)
             {
-                // Якщо немає highly rated товарів в ViewData, визначаємо їх
-                highlyRatedShoes = _shoes.Where(s => s.IsHighlyRated).ToList();
+                shoe.IsHighlyRated = shoe.Rating >= 4.5;
             }
 
-            // Передаємо highly rated товари для відображення на сторінці деталей
-            ViewData["HighlyRated"] = highlyRatedShoes;
+            // Випадковий відбір трьох карток з колекції для блоку BestSellers
+            var randomShoes = _shoes.OrderBy(s => Guid.NewGuid()).Take(3).ToList();
+            ViewData["BestSellers"] = randomShoes;
 
-            return View(shoe);
+            return View(selectedShoe);
         }
+
     }
 }

@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="stylesheet" href="/css/rest.css"/>
-
 </head>
 <body>
 
@@ -43,14 +42,14 @@
 
 <div class="content">
     @RenderBody()
-
 </div>
+
 <section class="best_seller_shoes">
     <h2>Best Sellers Shoes</h2>
     <div class="cards">
         @if (ViewData["BestSellers"] is List<WebAppi.Models.Shoe> bestSellers)
         {
-        var limitedBestSellers = bestSellers.Take(3).ToList(); // Обмежуємо трьома
+        var limitedBestSellers = bestSellers.Take(3).ToList(); // Обмеження трьома
         foreach (var shoe in limitedBestSellers)
         {
         <div class="card">
@@ -70,6 +69,7 @@
         }
     </div>
 </section>
+
 
 
 <footer>
