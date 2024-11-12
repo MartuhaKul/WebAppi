@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - YourProjectName</title>
+    
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/rest.css" />
+
+</head>
+<body>
+
+<header>
+    <div class="header">
+        <svg xmlns="http://www.w3.org/2000/svg" width="106" height="39" viewBox="0 0 106 39" fill="none">
+            <g clip-path="url(#clip0_0_2001)">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M13.5772 1.72697C6.6804 10.0051 0.0628038 20.2814 -2.13664e-05 27.953C-0.0701329 29.3289 0.166822 30.7031 0.692902 31.9716C1.21898 33.2402 2.02041 34.3697 3.03653 35.2748C5.78612 37.7459 9.33733 39.0815 12.9978 39.0214C17.982 39.0214 22.9381 36.9733 26.8124 35.389C33.3462 32.72 105.546 0.66367 105.546 0.66367C106.244 0.306854 106.112 -0.135597 105.239 0.0856294L26.6239 21.8229C25.1432 22.2547 23.6123 22.4804 22.0726 22.4937C16.0553 22.5294 10.7082 19.1182 10.7501 11.9248C10.7501 9.11307 11.6087 5.71618 13.5423 1.72697H13.5772Z"
+                      fill="#231F20"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_0_2001">
+                    <rect width="106" height="39" fill="white"/>
+                </clipPath>
+            </defs>
+        </svg>
+        <nav>
+            <ul>
+                <li><a href="#">NEW</a></li>
+                <li><a href="#">MAN</a></li>
+                <li><a href="#">WOMEN</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="content">
+    @RenderBody() 
+    
+</div>
+
+<footer>
+    
+</footer>
+
+</body>
+</html>

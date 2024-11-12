@@ -1,0 +1,47 @@
+﻿@model List<WebAppi.Models.Shoe>
+
+@{
+ViewData["Title"] = "Home Page";
+}
+@{
+Layout = "_Layout";
+}
+
+<main>
+    <img src="~/img/main.svg" alt="boots">
+    <div class="main">
+        <h2>@Model.First().Name</h2>
+        <p>$ @Model.First().Price</p>
+        <ul>
+            <li>US 7</li>
+            <li>US 8</li>
+            <li>US 9</li>
+            <li>US 10</li>
+            <li>US 11</li>
+            <li>US 12</li>
+        </ul>
+        <h4>For orders above $150 standard shipping is always free!</h4>
+    </div>
+</main>
+
+<section class="best_seller_shoes">
+    <h2>Best Sellers Shoes</h2>
+    <div class="cards">
+        @foreach (var shoe in Model)
+        {
+        <div class="card">
+            @if (shoe.IsHighlyRated)
+            {
+            <div class="highly_rated">
+                <p><span>&#9733;</span> Highly Rated</p>
+            </div>
+            }
+            <a href="@Url.Action("ShoeDetails", "Home", new { id = shoe.Id })">
+                <img src="@shoe.ImageUrl" alt="Shoe Image">
+                <h4>@shoe.Name</h4>
+                <h5>$ @shoe.Price</h5>
+            </a>
+        </div>
+        }
+    </div>
+</section>

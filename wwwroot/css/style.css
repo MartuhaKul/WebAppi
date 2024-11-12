@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.w-1440{
+    width: 1440px;
+    margin: 0 auto;
+}
+
+header, footer {
+    width: 100%;
+    height: 132px;
+    background: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+.header nav ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header nav ul li:nth-child(1){
+    margin-right: 60px;
+}
+.header nav ul li:nth-child(2){
+    margin-right: 45px;
+}
+/*-------------- main -----------------------------*/
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    background: #FBF6F3;
+    gap: 50px;
+    margin-bottom: 110px;
+}
+main img{
+    width: 581px;
+    border-radius: 40px;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.main h2{
+    width: 350px;
+    color: #000;
+    -webkit-text-stroke-color: #000;
+    font-size: 48px;
+    font-weight: 450;
+    margin-bottom: 23px;
+}
+.main p{
+    color: #AD0306;
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 52px;
+}
+.main ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 27px;
+    margin-bottom: 62px;
+}
+.main ul li:nth-child(1),
+.main ul li:nth-child(3),
+.main ul li:nth-child(6){
+    color: #000;
+    font-size: 13px;
+    font-weight: 400;
+}
+.main ul li:nth-child(2), .main ul li:nth-child(5){
+    color: #A19FA0;
+    -webkit-text-stroke-color: #A19FA0;
+    font-size: 13px;
+    font-weight: 400;
+}
+.main ul li:nth-child(4){
+    color: #B93536;
+    -webkit-text-stroke-color: #A90102;
+    font-size: 13px;
+    font-weight: 400;
+}
+.main h4{
+    color: #000;
+    -webkit-text-stroke-color: #000;
+    font-size: 18px;
+    font-weight: 450;
+    width: 328px;
+}
+/*--------------Best Sellers Shoes------------------*/
+.best_seller_shoes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+.best_seller_shoes h2{
+    color: #142823;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+}
+.cards{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1111px;
+}
+.card{
+    width: 285px;
+    height: 331px;
+    display: inline-flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    border-radius: 32px;
+    background: #FFF;
+    box-shadow: 0 4px 20px 0 rgba(139, 139, 139, 0.10);
+    position: relative;
+}
+/*.bgc_frame {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: 245px;*/
+/*    height: 200px;*/
+/*    background: #FBF6F3;*/
+/*    border-radius: 16px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+.highly_rated {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 165px;
+    height: 60px;
+    background-color: #f7f7f7;
+    position: absolute;
+    border-radius: 30px;
+    top: -40px;
+    left: 21%;
+}
+.highly_rated p{
+    color: #000;
+    -webkit-text-stroke-color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    background-color: #FFF;
+    padding: 8px 10px;
+    border-radius: 30px;
+}
+/*.card a{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: flex-start;*/
+/*    gap: 20px;*/
+/*    flex-direction: column;*/
+/*}*/
+.card h4{
+    color: #282828;
+    font-family: Inter, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+.cards .card:nth-child(odd) h5{
+    color: #106FDF;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+.cards .card:nth-child(2) h5{
+    color: #DD152D;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+/*----------------- hover ---------------*/
