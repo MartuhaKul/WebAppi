@@ -39,30 +39,47 @@ namespace WebAppi.Controllers
             }
         };
 
+        // Головна сторінка
         public IActionResult Index()
         {
+            // Встановлюємо, чи є товар highly rated
             foreach (var shoe in _shoes)
             {
                 shoe.IsHighlyRated = shoe.Rating >= 4.5;
             }
 
+            // Випадкові товари для відображення на головній сторінці
             var randomShoes = _shoes.OrderBy(s => Guid.NewGuid()).Take(3).ToList();
 
-            ViewData["BestSellers"] = randomShoes;
+            // Визначаємо товари з високими рейтингами
+            var highlyRatedShoes = _shoes.Where(s => s.IsHighlyRated).ToList();
+            ViewData["HighlyRated"] = highlyRatedShoes;  // Передаємо highly rated товари для відображення на сторінці
 
             return View(randomShoes);
         }
 
-
+        // Сторінка деталей товару
         public IActionResult ShoeDetails(int id)
         {
+            // Шукаємо товар за ID
             var shoe = _shoes.FirstOrDefault(s => s.Id == id);
             if (shoe == null)
             {
                 return NotFound();
             }
 
-            ViewData["BestSellers"] = _shoes.Where(s => s.Rating >= 4.5).ToList();
+            // Отримуємо highly rated товари з ViewData
+            var highlyRatedShoes = ViewData["HighlyRated"] as List<Shoe>;
+
+            if (highlyRatedShoes == null)
+            {
+                // Якщо немає highly rated товарів в ViewData, визначаємо їх
+                highlyRatedShoes = _shoes.Where(s => s.IsHighlyRated).ToList();
+            }
+
+            // Передаємо highly rated товари для відображення на сторінці деталей
+            ViewData["HighlyRated"] = highlyRatedShoes;
+
             return View(shoe);
         }
     }
