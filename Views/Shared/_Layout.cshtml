@@ -45,13 +45,12 @@
     @RenderBody()
 
 </div>
-<!-- "Best Sellers Shoes" section at the bottom, always displayed -->
 <section class="best_seller_shoes">
     <h2>Best Sellers Shoes</h2>
     <div class="cards">
         @if (ViewData["BestSellers"] is List<WebAppi.Models.Shoe> bestSellers)
         {
-        var limitedBestSellers = bestSellers.Take(3).ToList(); // Обмеження трьома
+        var limitedBestSellers = bestSellers.Take(3).ToList(); // Обмежуємо трьома
         foreach (var shoe in limitedBestSellers)
         {
         <div class="card">
@@ -69,9 +68,9 @@
         </div>
         }
         }
-
     </div>
 </section>
+
 
 <footer>
 
