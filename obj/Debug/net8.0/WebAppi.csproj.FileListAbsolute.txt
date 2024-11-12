@@ -26,3 +26,4 @@ C:\Web_LNU\WebAppi\obj\Debug\net8.0\refint\WebAppi.dll
 C:\Web_LNU\WebAppi\obj\Debug\net8.0\WebAppi.pdb
 C:\Web_LNU\WebAppi\obj\Debug\net8.0\WebAppi.genruntimeconfig.cache
 C:\Web_LNU\WebAppi\obj\Debug\net8.0\ref\WebAppi.dll
+C:\Web_LNU\WebAppi\obj\Debug\net8.0\WebAppi.sourcelink.json

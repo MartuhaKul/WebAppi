@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"] - YourProjectName</title>
-    
-    <link rel="stylesheet" href="~/css/style.css" />
-    <link rel="stylesheet" href="~/css/rest.css" />
+
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/rest.css"/>
 
 </head>
 <body>
@@ -27,21 +27,54 @@
         </svg>
         <nav>
             <ul>
-                <li><a href="#">NEW</a></li>
-                <li><a href="#">MAN</a></li>
-                <li><a href="#">WOMEN</a></li>
+                <li>
+                    <a href="#">NEW</a>
+                </li>
+                <li>
+                    <a href="#">MAN</a>
+                </li>
+                <li>
+                    <a href="#">WOMEN</a>
+                </li>
             </ul>
         </nav>
     </div>
 </header>
 
 <div class="content">
-    @RenderBody() 
-    
+    @RenderBody()
+
 </div>
+<!-- "Best Sellers Shoes" section at the bottom, always displayed -->
+<section class="best_seller_shoes">
+    <h2>Best Sellers Shoes</h2>
+    <div class="cards">
+        @if (ViewData["BestSellers"] is List<WebAppi.Models.Shoe> bestSellers)
+        {
+            var limitedBestSellers = bestSellers.Take(3).ToList(); // Обмеження трьома
+            foreach (var shoe in limitedBestSellers)
+            {
+                <div class="card">
+                    @if (shoe.IsHighlyRated)
+                    {
+                        <div class="highly_rated">
+                            <p><span>&#9733;</span> Highly Rated</p>
+                        </div>
+                    }
+                    <a class="card_a" href="@Url.Action("ShoeDetails", "Home", new { id = shoe.Id })">
+                        <img src="@shoe.ImageUrl" alt="Shoe Image">
+                        <h4>@shoe.Name</h4>
+                        <h5>$ @shoe.Price</h5>
+                    </a>
+                </div>
+            }
+        }
+        
+    </div>
+</section>
 
 <footer>
-    
+
 </footer>
 
 </body>

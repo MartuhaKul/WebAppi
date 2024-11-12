@@ -112,17 +112,19 @@ main img{
     font-family: Inter, sans-serif;
     font-size: 48px;
     font-weight: 700;
+    margin-bottom: 40px;
 }
-.cards{
+.best_seller_shoes .cards{
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 1111px;
+    gap: 20px;
 }
-.card{
+.best_seller_shoes .cards .card{
     width: 285px;
     height: 331px;
-    display: inline-flex;
+    display: flex;
     padding: 20px;
     flex-direction: column;
     align-items: flex-start;
@@ -132,16 +134,7 @@ main img{
     box-shadow: 0 4px 20px 0 rgba(139, 139, 139, 0.10);
     position: relative;
 }
-/*.bgc_frame {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    width: 245px;*/
-/*    height: 200px;*/
-/*    background: #FBF6F3;*/
-/*    border-radius: 16px;*/
-/*    margin-bottom: 10px;*/
-/*}*/
+
 .highly_rated {
     display: flex;
     justify-content: center;
@@ -163,18 +156,19 @@ main img{
     padding: 8px 10px;
     border-radius: 30px;
 }
-/*.card a{*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: flex-start;*/
-/*    gap: 20px;*/
-/*    flex-direction: column;*/
-/*}*/
-.card h4{
+.card_a{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+}
+.card a h4{
     color: #282828;
     font-family: Inter, sans-serif;
     font-size: 18px;
     font-weight: 700;
+
 }
 .cards .card:nth-child(odd) h5{
     color: #106FDF;

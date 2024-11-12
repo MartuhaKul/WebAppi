@@ -2,13 +2,11 @@
 
 @{
 ViewData["Title"] = "Home Page";
-}
-@{
 Layout = "_Layout";
 }
 
 <main>
-    <img src="~/img/main.svg" alt="boots">
+    <img src="~/img/main.svg" alt="Main Shoe Image">
     <div class="main">
         <h2>@Model.First().Name</h2>
         <p>$ @Model.First().Price</p>
@@ -20,28 +18,6 @@ Layout = "_Layout";
             <li>US 11</li>
             <li>US 12</li>
         </ul>
-        <h4>For orders above $150 standard shipping is always free!</h4>
+        <h4>For orders above $150, standard shipping is always free!</h4>
     </div>
 </main>
-
-<section class="best_seller_shoes">
-    <h2>Best Sellers Shoes</h2>
-    <div class="cards">
-        @foreach (var shoe in Model)
-        {
-        <div class="card">
-            @if (shoe.IsHighlyRated)
-            {
-            <div class="highly_rated">
-                <p><span>&#9733;</span> Highly Rated</p>
-            </div>
-            }
-            <a href="@Url.Action("ShoeDetails", "Home", new { id = shoe.Id })">
-                <img src="@shoe.ImageUrl" alt="Shoe Image">
-                <h4>@shoe.Name</h4>
-                <h5>$ @shoe.Price</h5>
-            </a>
-        </div>
-        }
-    </div>
-</section>

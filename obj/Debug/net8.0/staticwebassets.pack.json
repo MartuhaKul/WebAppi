@@ -33,6 +33,18 @@
       "PackagePath": "staticwebassets\\img\\Frame3.svg"
     },
     {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame4.svg",
+      "PackagePath": "staticwebassets\\img\\Frame4.svg"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame5.svg",
+      "PackagePath": "staticwebassets\\img\\Frame5.svg"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame6.svg",
+      "PackagePath": "staticwebassets\\img\\Frame6.svg"
+    },
+    {
       "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\main.svg",
       "PackagePath": "staticwebassets\\img\\main.svg"
     },
