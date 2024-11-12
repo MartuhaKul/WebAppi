@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\rest.css",
+      "PackagePath": "staticwebassets\\css\\rest.css"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame1.png",
+      "PackagePath": "staticwebassets\\img\\Frame1.png"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame1.svg",
+      "PackagePath": "staticwebassets\\img\\Frame1.svg"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame2.png",
+      "PackagePath": "staticwebassets\\img\\Frame2.png"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame2.svg",
+      "PackagePath": "staticwebassets\\img\\Frame2.svg"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame3.png",
+      "PackagePath": "staticwebassets\\img\\Frame3.png"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame3.svg",
+      "PackagePath": "staticwebassets\\img\\Frame3.svg"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\main.svg",
+      "PackagePath": "staticwebassets\\img\\main.svg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WebAppi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.WebAppi.props",
+      "PackagePath": "build\\WebAppi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.WebAppi.props",
+      "PackagePath": "buildMultiTargeting\\WebAppi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.WebAppi.props",
+      "PackagePath": "buildTransitive\\WebAppi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
