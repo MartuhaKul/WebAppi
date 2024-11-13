@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\cart.css",
+      "PackagePath": "staticwebassets\\css\\cart.css"
+    },
+    {
       "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\rest.css",
       "PackagePath": "staticwebassets\\css\\rest.css"
     },
@@ -47,6 +51,10 @@
     {
       "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\main.svg",
       "PackagePath": "staticwebassets\\img\\main.svg"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\shopping-bag.svg",
+      "PackagePath": "staticwebassets\\img\\shopping-bag.svg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WebAppi.Microsoft.AspNetCore.StaticWebAssets.props",

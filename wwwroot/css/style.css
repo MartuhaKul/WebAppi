@@ -24,22 +24,18 @@ header, footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 50px;
 }
-.header nav ul li:nth-child(1){
-    margin-right: 60px;
-}
-.header nav ul li:nth-child(2){
-    margin-right: 45px;
-}
+
 /*-------------- main -----------------------------*/
 main{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 800px;
+    height: 700px;
     background: #FBF6F3;
     gap: 50px;
-    margin-bottom: 110px;
+    margin-bottom: 80px;
 }
 main img{
     width: 581px;
@@ -63,14 +59,25 @@ main img{
     color: #AD0306;
     font-size: 36px;
     font-weight: 400;
-    margin-bottom: 52px;
+    margin-bottom: 42px;
 }
 .main ul{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 27px;
-    margin-bottom: 62px;
+    margin-bottom: 42px;
+}
+.main button{
+    width: 170px;
+    height: 50px;
+    border: #A90102 1px solid ;
+    border-radius: 16px;
+    color: #000;
+    -webkit-text-stroke-color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    transition: 0.8s;
 }
 .main ul li:nth-child(1),
 .main ul li:nth-child(3),
@@ -97,6 +104,7 @@ main img{
     font-size: 18px;
     font-weight: 450;
     width: 328px;
+    margin-bottom: 32px;
 }
 /*--------------Best Sellers Shoes------------------*/
 .best_seller_shoes{
@@ -133,6 +141,7 @@ main img{
     background: #FFF;
     box-shadow: 0 4px 20px 0 rgba(139, 139, 139, 0.10);
     position: relative;
+    transition: 0.8s;
 }
 
 .highly_rated {
@@ -183,3 +192,13 @@ main img{
     font-weight: 700;
 }
 /*----------------- hover ---------------*/
+.main button:hover{
+    transform: scale(1.1);
+    background-color: #ff6163;
+    border: #1E1E1E 1px solid ;
+}
+.card:hover{
+    transform: scale(1.1);
+    z-index: 1;
+    box-shadow: 0 4px 24px 0 rgba(33, 15, 15, 0.81);
+}

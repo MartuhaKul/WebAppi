@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "It8CTnn/+98kxL7PHND5m8/4Zr+3yuGzbYCol8StCkM=",
+  "Hash": "3qofP040flqdnWDXYFSmtpUHjMJU4Z0fWkk74DreNaw=",
   "Source": "WebAppi",
   "BasePath": "_content/WebAppi",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\cart.css",
+      "SourceId": "WebAppi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Web_LNU\\WebAppi\\wwwroot\\",
+      "BasePath": "_content/WebAppi",
+      "RelativePath": "css/cart.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\cart.css"
+    },
     {
       "Identity": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\rest.css",
       "SourceId": "WebAppi",
@@ -243,6 +262,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\main.svg"
+    },
+    {
+      "Identity": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\shopping-bag.svg",
+      "SourceId": "WebAppi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Web_LNU\\WebAppi\\wwwroot\\",
+      "BasePath": "_content/WebAppi",
+      "RelativePath": "img/shopping-bag.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\shopping-bag.svg"
     }
   ]
 }
