@@ -1,0 +1,21 @@
+﻿@model List<WebAppi.Models.Shoe>
+
+<h2>Your Shopping Cart</h2>
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var shoe in Model)
+        {
+            <li>
+                <img src="@shoe.ImageUrl" alt="@shoe.Name" width="50">
+                <h3>@shoe.Name</h3>
+                <p>$ @shoe.Price</p>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Your cart is empty.</p>
+}
