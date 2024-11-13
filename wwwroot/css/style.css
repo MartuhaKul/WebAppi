@@ -24,13 +24,9 @@ header, footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 50px;
 }
-.header nav ul li:nth-child(1){
-    margin-right: 60px;
-}
-.header nav ul li:nth-child(2){
-    margin-right: 45px;
-}
+
 /*-------------- main -----------------------------*/
 main{
     display: flex;
