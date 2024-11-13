@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\cart.css",
+      "PackagePath": "staticwebassets\\css\\cart.css"
+    },
+    {
       "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\rest.css",
       "PackagePath": "staticwebassets\\css\\rest.css"
     },

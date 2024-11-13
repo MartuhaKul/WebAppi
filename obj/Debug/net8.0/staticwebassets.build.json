@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "H+2BPqn5ZMJ68q3c3DxkHgYsyLrfKTCNUwT5RxbmPKw=",
+  "Hash": "3qofP040flqdnWDXYFSmtpUHjMJU4Z0fWkk74DreNaw=",
   "Source": "WebAppi",
   "BasePath": "_content/WebAppi",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\cart.css",
+      "SourceId": "WebAppi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Web_LNU\\WebAppi\\wwwroot\\",
+      "BasePath": "_content/WebAppi",
+      "RelativePath": "css/cart.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\cart.css"
+    },
     {
       "Identity": "C:\\Web_LNU\\WebAppi\\wwwroot\\css\\rest.css",
       "SourceId": "WebAppi",
