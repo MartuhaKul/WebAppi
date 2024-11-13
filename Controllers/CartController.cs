@@ -6,8 +6,7 @@ namespace WebAppi.Controllers
     public class CartController : Controller
     {
         private static List<Shoe> _cart = new List<Shoe>();
-
-        // Додавання товару до корзини
+        
         public IActionResult AddToCart(int id)
         {
             var shoe = ShoeList().FirstOrDefault(s => s.Id == id);
@@ -17,14 +16,12 @@ namespace WebAppi.Controllers
             }
             return RedirectToAction("Cart");
         }
-
-        // Перегляд корзини
+        
         public IActionResult Cart()
         {
             return View(_cart);
         }
-
-        // Список всіх доступних товарів (для прикладу)
+        
         private List<Shoe> ShoeList()
         {
             return new List<Shoe>

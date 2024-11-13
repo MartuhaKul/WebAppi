@@ -41,13 +41,11 @@ namespace WebAppi.Controllers
 
         public IActionResult Index()
         {
-            // Встановлюємо рейтинг для взуття
             foreach (var shoe in _shoes)
             {
                 shoe.IsHighlyRated = shoe.Rating >= 4.5;
             }
-
-            // Випадковий відбір трьох карток з колекції
+            
             var randomShoes = _shoes.OrderBy(s => Guid.NewGuid()).Take(3).ToList();
             ViewData["BestSellers"] = randomShoes;
 
@@ -56,20 +54,17 @@ namespace WebAppi.Controllers
 
         public IActionResult ShoeDetails(int id)
         {
-            // Знаходимо вибрану картку
             var selectedShoe = _shoes.FirstOrDefault(s => s.Id == id);
             if (selectedShoe == null)
             {
                 return NotFound();
             }
-
-            // Встановлюємо рейтинг для взуття
+            
             foreach (var shoe in _shoes)
             {
                 shoe.IsHighlyRated = shoe.Rating >= 4.5;
             }
-
-            // Випадковий відбір трьох карток з колекції для блоку BestSellers
+            
             var randomShoes = _shoes.OrderBy(s => Guid.NewGuid()).Take(3).ToList();
             ViewData["BestSellers"] = randomShoes;
 
