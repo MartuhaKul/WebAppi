@@ -32,10 +32,10 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 800px;
+    height: 700px;
     background: #FBF6F3;
     gap: 50px;
-    margin-bottom: 110px;
+    margin-bottom: 80px;
 }
 main img{
     width: 581px;
@@ -59,14 +59,24 @@ main img{
     color: #AD0306;
     font-size: 36px;
     font-weight: 400;
-    margin-bottom: 52px;
+    margin-bottom: 42px;
 }
 .main ul{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 27px;
-    margin-bottom: 62px;
+    margin-bottom: 42px;
+}
+.main button{
+    width: 170px;
+    height: 50px;
+    border: #A90102 1px solid ;
+    border-radius: 16px;
+    color: #000;
+    -webkit-text-stroke-color: #000;
+    font-size: 18px;
+    font-weight: 500;
 }
 .main ul li:nth-child(1),
 .main ul li:nth-child(3),
@@ -93,6 +103,7 @@ main img{
     font-size: 18px;
     font-weight: 450;
     width: 328px;
+    margin-bottom: 32px;
 }
 /*--------------Best Sellers Shoes------------------*/
 .best_seller_shoes{
