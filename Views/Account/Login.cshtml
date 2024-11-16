@@ -1,12 +1,35 @@
-﻿<form method="post" action="/Account/Login">
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required />
+﻿@{
+Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4" style="max-width: 400px; border-radius: 10px;">
+        <h2 class="text-center mb-4">Вхід</h2>
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <!-- Відображення помилок -->
+            @if (!ViewData.ModelState.IsValid)
+            {
+            <div class="alert alert-danger">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                <p class="mb-0">@error.ErrorMessage</p>
+                }
+            </div>
+            }
+
+            <button type="submit" class="btn btn-primary w-100">Увійти</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="@Url.Action("Register", "Account")" class="text-decoration-none text-secondary">Ще не маєте акаунту? Зареєструйтесь!</a>
+        </div>
     </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required />
-    </div>
-    <button type="submit">Login</button>
-</form>
-<p>Don't have an account? <a href="/Account/Register">Register</a></p>
+</div>
