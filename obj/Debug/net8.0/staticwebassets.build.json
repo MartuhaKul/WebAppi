@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3qofP040flqdnWDXYFSmtpUHjMJU4Z0fWkk74DreNaw=",
+  "Hash": "bZxxqDG6vegmQoRG8Bsb9LBRj22QoiOqyg1CHDscuLg=",
   "Source": "WebAppi",
   "BasePath": "_content/WebAppi",
   "Mode": "Default",
@@ -262,6 +262,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\main.svg"
+    },
+    {
+      "Identity": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\profile-icon.svg",
+      "SourceId": "WebAppi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Web_LNU\\WebAppi\\wwwroot\\",
+      "BasePath": "_content/WebAppi",
+      "RelativePath": "img/profile-icon.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\profile-icon.svg"
     },
     {
       "Identity": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\shopping-bag.svg",

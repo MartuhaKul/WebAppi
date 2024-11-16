@@ -40,9 +40,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../Account/Login">LOGIN</a>
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                    <!-- Іконка для автентифікованих користувачів -->
+                    <a href="@Url.Action("Profile", "Account")">
+                        <img src="img/profile-icon.svg" alt="profile-icon"/>
+                    </a>
+                    }
+                    else
+                    {
+                    <!-- Посилання для неавторизованих користувачів -->
+                    <a href="@Url.Action("Login", "Account")">LOGIN</a>
+                    }
                 </li>
-
             </ul>
         </nav>
     </div>

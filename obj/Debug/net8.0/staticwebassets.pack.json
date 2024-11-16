@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\img\\main.svg"
     },
     {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\profile-icon.svg",
+      "PackagePath": "staticwebassets\\img\\profile-icon.svg"
+    },
+    {
       "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\shopping-bag.svg",
       "PackagePath": "staticwebassets\\img\\shopping-bag.svg"
     },
