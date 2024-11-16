@@ -8,6 +8,7 @@ namespace WebAppi.Controllers;
 public class AccountController : Controller
 {
     private readonly AppDbContext _context;
+    
 
     public AccountController(AppDbContext context)
     {
@@ -38,7 +39,9 @@ public class AccountController : Controller
             return View();
         }
 
-        // Логіка авторизації (можна додати сесії або кукі тут)
+        // Логіка авторизації (збереження email в сесії)
+        HttpContext.Session.SetString("UserEmail", user.Email);
+
         return RedirectToAction("Index", "Home"); // Перенаправлення на головну сторінку
     }
 
@@ -68,8 +71,22 @@ public class AccountController : Controller
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
 
+        // Після реєстрації зберігаємо email в сесії
+        HttpContext.Session.SetString("UserEmail", user.Email);
+
         // Перенаправляємо на головну сторінку після успішної реєстрації
         return RedirectToAction("Index", "Home");
     }
+
+    [HttpGet]
+    public IActionResult Logout()
+    {
+        // Очищаємо сесію користувача
+        HttpContext.Session.Remove("UserEmail");
+
+        // Перенаправляємо на сторінку входу
+        return RedirectToAction("Login", "Account");
+    }
+    
 
 }

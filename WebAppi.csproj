@@ -8,6 +8,9 @@
 
     <ItemGroup>
       <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters.SessionState" Version="1.0.0-preview.3.22370.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
       <PackageReference Include="MySql.Data" Version="8.3.0" />
       <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.0" />

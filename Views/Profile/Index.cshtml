@@ -1,0 +1,12 @@
+﻿@model WebAppi.Models.User
+
+@{
+    ViewData["Title"] = "Ваш Профіль";
+    Layout = "_LayoutProfile";
+}
+
+<div>
+    <h2>@Model.Name</h2>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <a href="@Url.Action("Edit", "Profile")" class="btn btn-primary">Редагувати профіль</a>
+</div>
