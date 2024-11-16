@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using WebAppi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // Додаємо служб для MVC
 builder.Services.AddControllersWithViews();
