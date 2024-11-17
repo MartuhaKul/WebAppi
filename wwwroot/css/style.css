@@ -75,7 +75,7 @@ main img{
     border-radius: 16px;
     color: #000;
     -webkit-text-stroke-color: #000;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     transition: 0.8s;
 }
@@ -195,7 +195,8 @@ main img{
 .main button:hover{
     transform: scale(1.1);
     background-color: #ff6163;
-    border: #1E1E1E 1px solid ;
+    border: #ffffff 1px solid ;
+    color: #fff;
 }
 .card:hover{
     transform: scale(1.1);

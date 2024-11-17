@@ -30,7 +30,7 @@ h2{
     color: #142823;
     text-align: center;
     font-family: Inter, sans-serif;
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 700;
 }
 main{
@@ -44,28 +44,99 @@ main{
     margin-bottom: 80px;
 }
 .card{
-    width: 210px;
-    height: 240px;
+    width: 220px;
+    height: 295px;
     display: flex;
     padding: 15px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 12px;
-    border-radius: 32px;
+    gap: 10px;
+    border-radius: 16px;
     background: #FFF;
     box-shadow: 0 4px 20px 0 rgba(139, 139, 139, 0.10);
     position: relative;
     transition: 0.8s;
+    margin-bottom: 40px;
+}
+
+.card h3{
+    font-size: 18px;
+}
+.shoe-price{
+    color: #fd2424;
+    font-weight: bold;
+}
+.card p input{
+    width: 30px;
 }
 .card img{
-    width: 150px;
+    width: 160px;
 }
-.cart-items{
+.card a {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px; /* Збільшено розмір */
+    height: 30px; /* Збільшено розмір */
+    border: #FF4D5A 2px solid; /* Червоний контур */
+    border-radius: 25px; /* Заокруглені краї */
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    line-height: 40px; /* Вирівнювання тексту по центру */
+    text-decoration: none;
+    background-color: #FF4D5A; /* Початковий фон */
+    -webkit-text-stroke-color: #000; /* Текстовий обвід */
+    transition: all 0.3s ease; /* Плавний перехід */
+}
+/* Ефект при наведенні */
+.card a:hover {
+    background-color: #FF1A2F; /* Темніший відтінок червоного */
+    box-shadow: 0 8px 16px rgba(84, 6, 6, 0.4); /* Тінь */
+}
+
+/* Ефект при натисканні */
+.card a:active {
+    transform: scale(0.98); /* Легке зменшення кнопки при натисканні */
+    background-color: #D0001F; /* Темніше червоне при натисканні */
+    box-shadow: 0 8px 16px rgba(84, 6, 6, 0.4); /* Тінь */
+}
+
+/* Стиль для карток */
+.cart-items {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     gap: 50px;
     flex-wrap: wrap;
+}
+
+/* Стиль для кнопки замовлення */
+.order-now {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Тінь */
+}
+
+/* Ефект при наведенні */
+.order-now:hover {
+    background-color: #0056b3;
+    color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.4); /* Тінь */
+}
+
+/* Ефект при натисканні (фокус) */
+.order-now:active {
+    background-color: #004085;
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.4); /* Тінь */
 }

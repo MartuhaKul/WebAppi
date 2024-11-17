@@ -1,4 +1,4 @@
-﻿@model List<WebAppi.Models.Shoe>
+﻿@model List<WebAppi.Controllers.CartItem>
 
 @{
     Layout = "_LayoutCart";
@@ -10,15 +10,22 @@
     @if (Model.Any())
     {
         <div class="cart-items">
-            @foreach (var shoe in Model)
+            @foreach (var cartItem in Model)
             {
                 <div class="card">
-                    <img src="@shoe.ImageUrl" alt="@shoe.Name" width="100" class="shoe-image">
-                    <h3 class="shoe-name">@shoe.Name</h3>
-                    <p class="shoe-price">$ @shoe.Price</p>
+                    <img src="@cartItem.Shoe.ImageUrl" alt="@cartItem.Shoe.Name" width="100" class="shoe-image">
+                    <h3 class="shoe-name">@cartItem.Shoe.Name</h3>
+                    <p class="shoe-price">$ @cartItem.Shoe.Price</p>
+                    <p>Quantity: 
+                        <input type="number" min="1" value="@cartItem.Quantity" />
+                    </p>
+                    <a href="@Url.Action("RemoveFromCart", "Cart", new { id = cartItem.Shoe.Id })">Remove</a>
                 </div>
             }
         </div>
+
+        <a href="@Url.Action("Checkout", "Cart")" class="order-now">order-now</a>
+
     }
     else
     {
