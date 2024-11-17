@@ -1,16 +1,17 @@
 ﻿@model WebAppi.Models.Shoe
 
 @{
-ViewData["Title"] = Model.Name;
-Layout = "_Layout";
+    ViewData["Title"] = Model.Name;
+    Layout = "_Layout";
+    var userEmail = Context.Session.GetString("UserEmail");
 }
 
 <main>
-    <img src="@Model.ImageUrl" alt="Shoe Image">
+    <img src="@Model.ImageUrl" alt="Shoe Image" class="img-fluid mb-4">
     <div class="main">
-        <h2>@Model.Name</h2>
-        <p>$ @Model.Price</p>
-        <ul>
+        <h2 class="mb-3">@Model.Name</h2>
+        <p class="h5 text-success">$ @Model.Price</p>
+        <ul class="list-unstyled my-3">
             <li>US 7</li>
             <li>US 8</li>
             <li>US 9</li>
@@ -18,10 +19,26 @@ Layout = "_Layout";
             <li>US 11</li>
             <li>US 12</li>
         </ul>
-        <h4>For orders above $150, standard shipping is always free!</h4>
-        <form method="post" action="@Url.Action("AddToCart", "Cart", new { id = Model.Id })">
-            <button type="submit">BUY</button>
-        </form>
+        <h4 class="text-muted">For orders above $150, standard shipping is always free!</h4>
+        <div class="mt-4">
+            @if (!string.IsNullOrEmpty(userEmail))
+            {
+                <form method="post" action="@Url.Action("AddToCart", "Cart", new { id = Model.Id })">
+                    <button type="submit" class="btn btn-primary">BUY</button>
+                </form>
+            }
+            else
+            {
+                <div class="alert alert-danger d-flex align-items-center" role="alert" style="font-size: 1.2rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 12.93A5.93 5.93 0 1 1 8 2.07a5.93 5.93 0 0 1 0 11.86zM8 4a.93.93 0 1 1 0 1.86A.93.93 0 0 1 8 4zm.93 3.5H7.07a.5.5 0 0 0 0 1h.5v3a.5.5 0 0 0 1 0v-3h.5a.5.5 0 0 0 0-1z"/>
+                    </svg>
+                    <div>
+                        <strong>Warning!</strong> Please <a href="@Url.Action("Login", "Account")" class="text-decoration-underline fw-bold text-light">log in</a> to buy this item.
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </main>
 

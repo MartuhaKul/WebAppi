@@ -39,14 +39,14 @@ var userEmail = Context.Session.GetString("UserEmail");
                     <a href="#">WOMEN</a>
                 </li>
                 <li><a href="@Url.Action("Cart", "Cart")">
-                        <img src="@Url.Content("~/img/shopping-bag.svg")" alt="shopping-bag"/>
+                        <img src="@Url.Content("~/img/shopping-bag.svg")" alt="shopping-bag" width="40" height="40"/>
                     </a>
                 </li>
                 <li>
                     @if (userEmail != null)
                     {
                     <a href="@Url.Action("Index", "Profile")">
-                        <img src="img/profile-icon.svg" alt="profile-icon" width="30" height="30" />
+                        <img src="@Url.Content("~/img/profile-icon.svg")" alt="profile-icon" width="30" height="30" />
                     </a>
                     }
                     else
