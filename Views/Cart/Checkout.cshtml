@@ -1,17 +1,20 @@
 ﻿@model WebAppi.Controllers.OrderViewModel
+@{
+Layout = "_LayoutCheckout";
+}
 
-<h2>Оформлення замовлення</h2>
+<h2>Order Checkout</h2>
 
 @if (Model.CartItems != null && Model.CartItems.Any())
 {
-    <h3>Ваш кошик:</h3>
+    <h3>Your Cart:</h3>
     <table class="table">
         <thead>
         <tr>
-            <th>Назва товару</th>
-            <th>Кількість</th>
-            <th>Ціна</th>
-            <th>Загальна ціна</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
         </tr>
         </thead>
         <tbody>
@@ -29,22 +32,22 @@
 }
 else
 {
-    <p>Ваш кошик порожній.</p>
+    <p>Your cart is empty.</p>
 }
 
-<!-- Форма для оформлення замовлення -->
+<!-- Order checkout form -->
 <form method="post">
     <div class="form-group">
-        <label for="Address">Адреса</label>
+        <label for="Address">Address</label>
         <input type="text" id="Address" name="Address" class="form-control" value="@Model.Address" required />
     </div>
     <div class="form-group">
-        <label for="PhoneNumber">Номер телефону</label>
+        <label for="PhoneNumber">Phone Number</label>
         <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" value="@Model.PhoneNumber" required />
     </div>
     <div class="form-group">
-        <label for="Email">Електронна пошта</label>
+        <label for="Email">Email</label>
         <input type="email" id="Email" name="Email" class="form-control" value="@Model.Email" required />
     </div>
-    <button type="submit" class="btn btn-primary">Оформити замовлення</button>
+    <button type="submit" class="btn btn-primary">Place Order</button>
 </form>
