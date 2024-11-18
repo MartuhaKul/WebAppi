@@ -1,102 +1,161 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebAppi.Data;
 using WebAppi.Models;
 
+
 namespace WebAppi.Controllers
 {
-   // Контролер для кошика
-public class CartController : Controller
-{
-    private readonly AppDbContext _context;
-    private static List<CartItem> _cart = new List<CartItem>();
-
-    public CartController(AppDbContext context)
+    // Контролер для кошика
+    public class CartController : Controller
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
+        private const string CartSessionKey = "Cart";
 
-    public IActionResult AddToCart(int id, int quantity = 1)
-    {
-        var shoe = _context.Shoes.FirstOrDefault(s => s.Id == id);
-        if (shoe != null)
+        public CartController(AppDbContext context)
         {
-            var existingItem = _cart.FirstOrDefault(c => c.Shoe.Id == id);
-            if (existingItem != null)
-            {
-                existingItem.Quantity += quantity;
-            }
-            else
-            {
-                _cart.Add(new CartItem { Shoe = shoe, Quantity = quantity });
-            }
+            _context = context;
         }
-        return RedirectToAction("Cart");
-    }
 
-    public IActionResult Cart()
-    {
-        return View(_cart);
-    }
-
-    // Додатково: видалення кросівок з кошика
-    public IActionResult RemoveFromCart(int id)
-    {
-        var item = _cart.FirstOrDefault(c => c.Shoe.Id == id);
-        if (item != null)
+        // Додати елемент до кошика
+        public IActionResult AddToCart(int id, int quantity = 1)
         {
-            _cart.Remove(item);
-        }
-        return RedirectToAction("Cart");
-    }
-
-    // Перехід на форму для замовлення
-    public IActionResult Checkout()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Checkout(Order order)
-    {
-        if (ModelState.IsValid)
-        {
-            order.OrderDate = DateTime.Now;
-            _context.Orders.Add(order);
-
-            // Додаємо товари в замовлення
-            foreach (var cartItem in _cart)
+            var shoe = _context.Shoes.FirstOrDefault(s => s.Id == id);
+            if (shoe != null)
             {
-                var orderItem = new OrderItem
+                var cart = GetCart();
+                var existingItem = cart.FirstOrDefault(c => c.Shoe.Id == id);
+                if (existingItem != null)
                 {
-                    ShoeId = cartItem.Shoe.Id,
-                    Quantity = cartItem.Quantity,
-                    Price = cartItem.Shoe.Price,
-                    Order = order
-                };
-                _context.OrderItems.Add(orderItem);
+                    existingItem.Quantity += quantity;
+                }
+                else
+                {
+                    cart.Add(new CartItem { Shoe = shoe, Quantity = quantity });
+                }
+                SaveCart(cart);
+            }
+            return RedirectToAction("Cart");
+        }
+
+        // Показати кошик
+        public IActionResult Cart()
+        {
+            var cart = GetCart();
+            return View(cart);
+        }
+
+        // Видалити елемент з кошика
+        public IActionResult RemoveFromCart(int id)
+        {
+            var cart = GetCart();
+            var item = cart.FirstOrDefault(c => c.Shoe.Id == id);
+            if (item != null)
+            {
+                cart.Remove(item);
+                SaveCart(cart);
+            }
+            return RedirectToAction("Cart");
+        }
+
+        // Показати форму для оформлення замовлення
+        [HttpGet]
+        public IActionResult Checkout()
+        {
+            var userEmail = HttpContext.Session.GetString("UserEmail");
+
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                return RedirectToAction("Login", "Account"); // Якщо сесія пуста, перенаправляємо на логін
             }
 
-            _context.SaveChanges();
-
-            // Очищаємо кошик після замовлення
-            _cart.Clear();
-
-            return RedirectToAction("OrderSuccess");
+            return View();
         }
-        return View(order);
+
+        // Обробка даних форми та збереження замовлення
+        [HttpPost]
+        public async Task<IActionResult> Checkout(Order model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userEmail = HttpContext.Session.GetString("UserEmail");
+
+                // Перевірка, чи є користувач у базі
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+                if (user == null)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+
+                // Створення нового замовлення
+                var order = new Order
+                {
+                    UserName = user.Name,  // Використовуємо ім'я користувача з сесії
+                    Address = model.Address,
+                    PhoneNumber = model.PhoneNumber,
+                    Email = model.Email,
+                    OrderDate = DateTime.Now
+                };
+
+                // Додаємо замовлення в базу
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+
+                // Зберігаємо елементи кошика в таблиці OrderItems
+                var cart = GetCart();
+                foreach (var cartItem in cart)
+                {
+                    var orderItem = new OrderItem
+                    {
+                        ShoeId = cartItem.Shoe.Id,
+                        Quantity = cartItem.Quantity,
+                        Price = cartItem.Shoe.Price,
+                        OrderId = order.Id
+                    };
+                    _context.OrderItems.Add(orderItem);
+                }
+                await _context.SaveChangesAsync();
+
+                // Очистити кошик після оформлення замовлення
+                ClearCart();
+
+                // Перенаправлення на сторінку успішного оформлення замовлення
+                return RedirectToAction("OrderConfirmation");
+            }
+
+            return View(model);
+        }
+
+        // Підтвердження замовлення
+        public IActionResult OrderConfirmation()
+        {
+            return View();
+        }
+
+        // Отримати кошик з сесії
+        private List<CartItem> GetCart()
+        {
+            var cart = HttpContext.Session.GetString(CartSessionKey);
+            return string.IsNullOrEmpty(cart) ? new List<CartItem>() : Newtonsoft.Json.JsonConvert.DeserializeObject<List<CartItem>>(cart);
+        }
+
+        // Зберегти кошик в сесії
+        private void SaveCart(List<CartItem> cart)
+        {
+            HttpContext.Session.SetString(CartSessionKey, Newtonsoft.Json.JsonConvert.SerializeObject(cart));
+        }
+
+        // Очистити кошик
+        private void ClearCart()
+        {
+            HttpContext.Session.Remove(CartSessionKey);
+        }
     }
 
-    public IActionResult OrderSuccess()
+    // Модель для елемента кошика
+    public class CartItem
     {
-        return View();
+        public Shoe Shoe { get; set; }
+        public int Quantity { get; set; }
     }
-}
-
-// Модель для елемента кошика
-public class CartItem
-{
-    public Shoe Shoe { get; set; }
-    public int Quantity { get; set; }
-}
-
 }
