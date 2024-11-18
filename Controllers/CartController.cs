@@ -4,99 +4,37 @@ using WebAppi.Models;
 
 namespace WebAppi.Controllers
 {
-   // Контролер для кошика
-public class CartController : Controller
-{
-    private readonly AppDbContext _context;
-    private static List<CartItem> _cart = new List<CartItem>();
-
-    public CartController(AppDbContext context)
+    public class CartController : Controller
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
+        private static List<Shoe> _cart = new List<Shoe>();
 
-    public IActionResult AddToCart(int id, int quantity = 1)
-    {
-        var shoe = _context.Shoes.FirstOrDefault(s => s.Id == id);
-        if (shoe != null)
+        public CartController(AppDbContext context)
         {
-            var existingItem = _cart.FirstOrDefault(c => c.Shoe.Id == id);
-            if (existingItem != null)
-            {
-                existingItem.Quantity += quantity;
-            }
-            else
-            {
-                _cart.Add(new CartItem { Shoe = shoe, Quantity = quantity });
-            }
+            _context = context;
         }
-        return RedirectToAction("Cart");
-    }
 
-    public IActionResult Cart()
-    {
-        return View(_cart);
-    }
-
-    // Додатково: видалення кросівок з кошика
-    public IActionResult RemoveFromCart(int id)
-    {
-        var item = _cart.FirstOrDefault(c => c.Shoe.Id == id);
-        if (item != null)
+        // Додавання кросівок до кошика
+        public IActionResult AddToCart(int id)
         {
-            _cart.Remove(item);
-        }
-        return RedirectToAction("Cart");
-    }
-
-    // Перехід на форму для замовлення
-    public IActionResult Checkout()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Checkout(Order order)
-    {
-        if (ModelState.IsValid)
-        {
-            order.OrderDate = DateTime.Now;
-            _context.Orders.Add(order);
-
-            // Додаємо товари в замовлення
-            foreach (var cartItem in _cart)
+            var shoe = _context.Shoes.FirstOrDefault(s => s.Id == id);
+            if (shoe != null)
             {
-                var orderItem = new OrderItem
-                {
-                    ShoeId = cartItem.Shoe.Id,
-                    Quantity = cartItem.Quantity,
-                    Price = cartItem.Shoe.Price,
-                    Order = order
-                };
-                _context.OrderItems.Add(orderItem);
+                _cart.Add(shoe);
             }
-
-            _context.SaveChanges();
-
-            // Очищаємо кошик після замовлення
-            _cart.Clear();
-
-            return RedirectToAction("OrderSuccess");
+            return RedirectToAction("Cart");
         }
-        return View(order);
+
+        // Перегляд кошика
+        public IActionResult Cart()
+        {
+            return View(_cart);
+        }
+
+        // Ви можете видалити цей метод, якщо більше не використовуєте статичний список
+        private List<Shoe> ShoeList()
+        {
+            return _context.Shoes.ToList();
+        }
     }
-
-    public IActionResult OrderSuccess()
-    {
-        return View();
-    }
-}
-
-// Модель для елемента кошика
-public class CartItem
-{
-    public Shoe Shoe { get; set; }
-    public int Quantity { get; set; }
-}
-
 }
