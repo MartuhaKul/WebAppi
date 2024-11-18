@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAppi.Data;
 using WebAppi.Models;
 
+
 namespace WebAppi.Controllers
 {
     [Route("[controller]/[action]")]
@@ -16,7 +17,7 @@ namespace WebAppi.Controllers
             _context = context;
         }
 
-        // Додати елемент до кошика
+        // Додати товар до кошика
         public IActionResult AddToCart(int id, int quantity = 1)
         {
             var shoe = _context.Shoes.FirstOrDefault(s => s.Id == id);
@@ -44,7 +45,7 @@ namespace WebAppi.Controllers
             return View(cart);
         }
 
-        // Видалити елемент з кошика
+        // Видалити товар з кошика
         public IActionResult RemoveFromCart(int id)
         {
             var cart = GetCart();
@@ -57,7 +58,7 @@ namespace WebAppi.Controllers
             return RedirectToAction("Cart");
         }
 
-        // Показати форму для оформлення замовлення
+        // Показати форму для оформлення замовлення (GET)
         [HttpGet]
         public IActionResult Checkout()
         {
@@ -68,14 +69,21 @@ namespace WebAppi.Controllers
                 return RedirectToAction("Login", "Account"); // Якщо сесія пуста, перенаправляємо на логін
             }
 
-            // Створення порожньої моделі для форми
-            var order = new Order();
-            return View(order); // Передаємо модель у View
+            var cart = GetCart(); // Отримуємо кошик
+            var orderViewModel = new OrderViewModel
+            {
+                CartItems = cart ?? new List<CartItem>(), // Переконуємось, що CartItems не буде null
+                Address = "", // або передаємо початкові значення для форми
+                PhoneNumber = "",
+                Email = ""
+            };
+
+            return View(orderViewModel); // Повертаємо модель у View
         }
 
         // Обробка даних форми та збереження замовлення
         [HttpPost]
-        public async Task<IActionResult> Checkout(Order model)
+        public async Task<IActionResult> Checkout(OrderViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -88,10 +96,14 @@ namespace WebAppi.Controllers
                     return RedirectToAction("Login", "Account");
                 }
 
+                // Отримання кошика
+                var cart = GetCart();  // Отримуємо кошик з сесії
+
                 // Перевірка, чи кошик не порожній
-                var cart = GetCart();
                 if (cart == null || cart.Count == 0)
                 {
+                    // Логування на випадок порожнього кошика
+                    Console.WriteLine("Cart is empty, nothing to save");
                     return View(model); // Повертаємо на форму, якщо кошик порожній
                 }
 
@@ -109,7 +121,7 @@ namespace WebAppi.Controllers
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
 
-                // Зберігаємо елементи кошика в таблиці OrderItems
+                // Зберігаємо елементи кошика в таблицю OrderItems
                 foreach (var cartItem in cart)
                 {
                     var orderItem = new OrderItem
@@ -117,7 +129,7 @@ namespace WebAppi.Controllers
                         ShoeId = cartItem.Shoe.Id,
                         Quantity = cartItem.Quantity,
                         Price = cartItem.Shoe.Price,
-                        OrderId = order.Id
+                        OrderId = order.Id  // Прив'язуємо до замовлення
                     };
                     _context.OrderItems.Add(orderItem);
                 }
@@ -130,11 +142,11 @@ namespace WebAppi.Controllers
                 return RedirectToAction("OrderConfirmation");
             }
 
-            // Якщо модель не валідна, повертаємо на форму
+            // Якщо форма не валідна, відображаємо помилки
             return View(model);
         }
 
-        // Підтвердження замовлення
+        // Підтвердження замовлення (відображення після успішного оформлення)
         public IActionResult OrderConfirmation()
         {
             return View();
@@ -146,7 +158,7 @@ namespace WebAppi.Controllers
             var cart = HttpContext.Session.GetString(CartSessionKey);
             if (string.IsNullOrEmpty(cart))
             {
-                return new List<CartItem>();
+                return new List<CartItem>(); // Якщо кошик порожній, повертаємо порожній список
             }
             return Newtonsoft.Json.JsonConvert.DeserializeObject<List<CartItem>>(cart);
         }
@@ -169,5 +181,14 @@ namespace WebAppi.Controllers
     {
         public Shoe Shoe { get; set; }
         public int Quantity { get; set; }
+    }
+
+    // Модель для форми оформлення замовлення
+    public class OrderViewModel
+    {
+        public List<CartItem> CartItems { get; set; } = new List<CartItem>();
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
     }
 }
