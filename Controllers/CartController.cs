@@ -3,10 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using WebAppi.Data;
 using WebAppi.Models;
 
-
 namespace WebAppi.Controllers
 {
-    // Контролер для кошика
+    [Route("[controller]/[action]")]
     public class CartController : Controller
     {
         private readonly AppDbContext _context;
@@ -69,7 +68,9 @@ namespace WebAppi.Controllers
                 return RedirectToAction("Login", "Account"); // Якщо сесія пуста, перенаправляємо на логін
             }
 
-            return View();
+            // Створення порожньої моделі для форми
+            var order = new Order();
+            return View(order); // Передаємо модель у View
         }
 
         // Обробка даних форми та збереження замовлення
@@ -87,6 +88,13 @@ namespace WebAppi.Controllers
                     return RedirectToAction("Login", "Account");
                 }
 
+                // Перевірка, чи кошик не порожній
+                var cart = GetCart();
+                if (cart == null || cart.Count == 0)
+                {
+                    return View(model); // Повертаємо на форму, якщо кошик порожній
+                }
+
                 // Створення нового замовлення
                 var order = new Order
                 {
@@ -102,7 +110,6 @@ namespace WebAppi.Controllers
                 await _context.SaveChangesAsync();
 
                 // Зберігаємо елементи кошика в таблиці OrderItems
-                var cart = GetCart();
                 foreach (var cartItem in cart)
                 {
                     var orderItem = new OrderItem
@@ -123,6 +130,7 @@ namespace WebAppi.Controllers
                 return RedirectToAction("OrderConfirmation");
             }
 
+            // Якщо модель не валідна, повертаємо на форму
             return View(model);
         }
 
@@ -136,7 +144,11 @@ namespace WebAppi.Controllers
         private List<CartItem> GetCart()
         {
             var cart = HttpContext.Session.GetString(CartSessionKey);
-            return string.IsNullOrEmpty(cart) ? new List<CartItem>() : Newtonsoft.Json.JsonConvert.DeserializeObject<List<CartItem>>(cart);
+            if (string.IsNullOrEmpty(cart))
+            {
+                return new List<CartItem>();
+            }
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<List<CartItem>>(cart);
         }
 
         // Зберегти кошик в сесії
