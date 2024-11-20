@@ -26,23 +26,23 @@ public class AccountController : Controller
 
         if (user == null)
         {
-            // Якщо користувача не знайдено, додаємо помилку до ModelState
+            
             ModelState.AddModelError("", "Користувача з таким email не знайдено.");
-            return View(); // Повертаємо ту саму сторінку з помилкою
+            return View(); 
         }
 
-        // Перевірка пароля
+       
         if (!BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
         {
-            // Якщо пароль неправильний, додаємо помилку до ModelState
+            
             ModelState.AddModelError("", "Неправильний пароль.");
             return View();
         }
 
-        // Логіка авторизації (збереження email в сесії)
+        
         HttpContext.Session.SetString("UserEmail", user.Email);
 
-        return RedirectToAction("Index", "Home"); // Перенаправлення на головну сторінку
+        return RedirectToAction("Index", "Home"); 
     }
 
 

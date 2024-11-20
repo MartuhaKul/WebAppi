@@ -17,7 +17,7 @@ namespace WebAppi.Controllers
             _context = context;
         }
 
-        // Додати товар до кошика
+        
         public IActionResult AddToCart(int id, int quantity = 1)
         {
             var shoe = _context.Shoes.FirstOrDefault(s => s.Id == id);
@@ -38,14 +38,13 @@ namespace WebAppi.Controllers
             return RedirectToAction("Cart");
         }
 
-        // Показати кошик
         public IActionResult Cart()
         {
             var cart = GetCart();
             return View(cart);
         }
 
-        // Видалити товар з кошика
+        
         public IActionResult RemoveFromCart(int id)
         {
             var cart = GetCart();
@@ -58,7 +57,6 @@ namespace WebAppi.Controllers
             return RedirectToAction("Cart");
         }
 
-        // Показати форму для оформлення замовлення (GET)
         [HttpGet]
         public IActionResult Checkout()
         {
@@ -66,22 +64,21 @@ namespace WebAppi.Controllers
 
             if (string.IsNullOrEmpty(userEmail))
             {
-                return RedirectToAction("Login", "Account"); // Якщо сесія пуста, перенаправляємо на логін
+                return RedirectToAction("Login", "Account"); 
             }
 
             var cart = GetCart(); // Отримуємо кошик
             var orderViewModel = new OrderViewModel
             {
-                CartItems = cart ?? new List<CartItem>(), // Переконуємось, що CartItems не буде null
-                Address = "", // або передаємо початкові значення для форми
+                CartItems = cart ?? new List<CartItem>(), 
+                Address = "", 
                 PhoneNumber = "",
                 Email = ""
             };
 
-            return View(orderViewModel); // Повертаємо модель у View
+            return View(orderViewModel); 
         }
-
-        // Обробка даних форми та збереження замовлення
+        
         [HttpPost]
         public async Task<IActionResult> Checkout(OrderViewModel model)
         {
@@ -95,33 +92,29 @@ namespace WebAppi.Controllers
                 {
                     return RedirectToAction("Login", "Account");
                 }
+                
+                var cart = GetCart(); 
 
-                // Отримання кошика
-                var cart = GetCart();  // Отримуємо кошик з сесії
-
-                // Перевірка, чи кошик не порожній
+ 
                 if (cart == null || cart.Count == 0)
                 {
-                    // Логування на випадок порожнього кошика
+     
                     Console.WriteLine("Cart is empty, nothing to save");
-                    return View(model); // Повертаємо на форму, якщо кошик порожній
+                    return View(model); 
                 }
-
-                // Створення нового замовлення
+                
                 var order = new Order
                 {
-                    UserName = user.Name,  // Використовуємо ім'я користувача з сесії
+                    UserName = user.Name, 
                     Address = model.Address,
                     PhoneNumber = model.PhoneNumber,
                     Email = model.Email,
                     OrderDate = DateTime.Now
                 };
-
-                // Додаємо замовлення в базу
+                
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
-
-                // Зберігаємо елементи кошика в таблицю OrderItems
+                
                 foreach (var cartItem in cart)
                 {
                     var orderItem = new OrderItem
@@ -129,16 +122,15 @@ namespace WebAppi.Controllers
                         ShoeId = cartItem.Shoe.Id,
                         Quantity = cartItem.Quantity,
                         Price = cartItem.Shoe.Price,
-                        OrderId = order.Id  // Прив'язуємо до замовлення
+                        OrderId = order.Id  
                     };
                     _context.OrderItems.Add(orderItem);
                 }
                 await _context.SaveChangesAsync();
 
-                // Очистити кошик після оформлення замовлення
+         
                 ClearCart();
-
-                // Перенаправлення на сторінку успішного оформлення замовлення
+                
                 return RedirectToAction("OrderConfirmation");
             }
 
