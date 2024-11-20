@@ -13,6 +13,34 @@
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\favicon_io\\android-chrome-192x192.png",
+      "PackagePath": "staticwebassets\\favicon_io\\android-chrome-192x192.png"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\favicon_io\\android-chrome-512x512.png",
+      "PackagePath": "staticwebassets\\favicon_io\\android-chrome-512x512.png"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\favicon_io\\apple-touch-icon.png",
+      "PackagePath": "staticwebassets\\favicon_io\\apple-touch-icon.png"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\favicon_io\\favicon-16x16.png",
+      "PackagePath": "staticwebassets\\favicon_io\\favicon-16x16.png"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\favicon_io\\favicon-32x32.png",
+      "PackagePath": "staticwebassets\\favicon_io\\favicon-32x32.png"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\favicon_io\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon_io\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\favicon_io\\site.webmanifest",
+      "PackagePath": "staticwebassets\\favicon_io\\site.webmanifest"
+    },
+    {
       "Id": "C:\\Web_LNU\\WebAppi\\wwwroot\\img\\Frame1.png",
       "PackagePath": "staticwebassets\\img\\Frame1.png"
     },
